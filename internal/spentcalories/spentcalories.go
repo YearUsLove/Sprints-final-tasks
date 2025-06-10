@@ -36,6 +36,10 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	if err != nil {
 		return 0, "", 0, fmt.Errorf("ошибка парсинга продолжительности: %w", err)
 	}
+
+	if duration <= 0 {
+		return 0, "", 0, errors.New("продолжительность должна быть больше 0")
+	}
 	return steps, parts[1], duration, nil
 }
 func distance(steps int, height float64) float64 {
